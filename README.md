@@ -47,40 +47,54 @@ Este repositório traz um **guia rápido e prático** dos principais **formatos 
 
 ## 💻 Exemplos de Uso
 
-### CSV
-```python
+# 📂 Exemplos de Leitura e Escrita com Pandas
+
 import pandas as pd
-
-# Leitura
-df = pd.read_csv("dados.csv")
-
-# Escrita
-df.to_csv("dados_saida.csv", index=False)
-
-### json
-```python
-
-# Leitura
-df = pd.read_json("dados.json")
-
-# Escrita
-df.to_json("dados_saida.json", orient="records", lines=True)
-
----------------------------------------------------------
-
 from sqlalchemy import create_engine
-import pandas as pd
 
-# Conexão com SQLite (exemplo)
-engine = create_engine("sqlite:///meu_banco.db")
+# -------------------------------
+# 1️⃣ CSV
+# -------------------------------
+df_csv = pd.read_csv("dados.csv")               # Leitura
+df_csv.to_csv("dados_saida.csv", index=False)   # Escrita
 
-# Leitura
-df = pd.read_sql("SELECT * FROM tabela_exemplo", con=engine)
+# -------------------------------
+# 2️⃣ JSON
+# -------------------------------
+df_json = pd.read_json("dados.json")                                # Leitura
+df_json.to_json("dados_saida.json", orient="records", lines=True)   # Escrita
 
-# Escrita
-df.to_sql("nova_tabela", con=engine, index=False, if_exists="replace")
+# -------------------------------
+# 3️⃣ Excel (.xls / .xlsx)
+# -------------------------------
+df_excel = pd.read_excel("dados.xlsx", sheet_name="Planilha1")      # Leitura
+df_excel.to_excel("dados_saida.xlsx", sheet_name="Planilha1", index=False)  # Escrita
 
----------------------------------------------------------
+# -------------------------------
+# 4️⃣ SQL (SQLite / MySQL / PostgreSQL)
+# -------------------------------
+engine = create_engine("sqlite:///meu_banco.db")                    # Conexão
+
+df_sql = pd.read_sql("SELECT * FROM tabela_exemplo", con=engine)   # Leitura
+df_sql.to_sql("nova_tabela", con=engine, index=False, if_exists="replace")  # Escrita
+
+# -------------------------------
+# 5️⃣ Parquet (formato colunar, Big Data)
+# -------------------------------
+df_parquet = pd.read_parquet("dados.parquet")                       # Leitura
+df_parquet.to_parquet("dados_saida.parquet", index=False)           # Escrita
+
+# -------------------------------
+# 6️⃣ Feather (rápido, otimizado para pandas)
+# -------------------------------
+df_feather = pd.read_feather("dados.feather")                       # Leitura
+df_feather.to_feather("dados_saida.feather")                        # Escrita
+
+# -------------------------------
+# 7️⃣ Pickle (formato binário Python)
+# -------------------------------
+df_pickle = pd.read_pickle("dados.pkl")                              # Leitura
+df_pickle.to_pickle("dados_saida.pkl")                                # Escrita
 
 
 
