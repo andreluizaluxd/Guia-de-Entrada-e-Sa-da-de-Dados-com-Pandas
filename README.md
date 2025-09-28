@@ -46,55 +46,53 @@ Este repositório traz um **guia rápido e prático** dos principais **formatos 
 ---
 
 ## 💻 Exemplos de Uso
-
-# 📂 Exemplos de Leitura e Escrita com Pandas
-
 import pandas as pd
 from sqlalchemy import create_engine
 
 # -------------------------------
-# 1️⃣ CSV
+# CSV
 # -------------------------------
-df_csv = pd.read_csv("dados.csv")               # Leitura
-df_csv.to_csv("dados_saida.csv", index=False)   # Escrita
+df_csv = pd.read_csv("dados.csv")
+df_csv.to_csv("dados_saida.csv", index=False)
 
 # -------------------------------
-# 2️⃣ JSON
+# JSON
 # -------------------------------
-df_json = pd.read_json("dados.json")                                # Leitura
-df_json.to_json("dados_saida.json", orient="records", lines=True)   # Escrita
+df_json = pd.read_json("dados.json")
+df_json.to_json("dados_saida.json", orient="records", lines=True)
 
 # -------------------------------
-# 3️⃣ Excel (.xls / .xlsx)
+# Excel
 # -------------------------------
-df_excel = pd.read_excel("dados.xlsx", sheet_name="Planilha1")      # Leitura
-df_excel.to_excel("dados_saida.xlsx", sheet_name="Planilha1", index=False)  # Escrita
+df_excel = pd.read_excel("dados.xlsx")
+df_excel.to_excel("dados_saida.xlsx", index=False)
 
 # -------------------------------
-# 4️⃣ SQL (SQLite / MySQL / PostgreSQL)
+# SQL (SQLite)
 # -------------------------------
-engine = create_engine("sqlite:///meu_banco.db")                    # Conexão
-
-df_sql = pd.read_sql("SELECT * FROM tabela_exemplo", con=engine)   # Leitura
-df_sql.to_sql("nova_tabela", con=engine, index=False, if_exists="replace")  # Escrita
-
-# -------------------------------
-# 5️⃣ Parquet (formato colunar, Big Data)
-# -------------------------------
-df_parquet = pd.read_parquet("dados.parquet")                       # Leitura
-df_parquet.to_parquet("dados_saida.parquet", index=False)           # Escrita
+engine = create_engine("sqlite:///meu_banco.db")
+df_sql = pd.read_sql("SELECT * FROM tabela_exemplo", con=engine)
+df_sql.to_sql("nova_tabela", con=engine, index=False, if_exists="replace")
 
 # -------------------------------
-# 6️⃣ Feather (rápido, otimizado para pandas)
+# Parquet
 # -------------------------------
-df_feather = pd.read_feather("dados.feather")                       # Leitura
-df_feather.to_feather("dados_saida.feather")                        # Escrita
+df_parquet = pd.read_parquet("dados.parquet")
+df_parquet.to_parquet("dados_saida.parquet", index=False)
 
 # -------------------------------
-# 7️⃣ Pickle (formato binário Python)
+# Feather
 # -------------------------------
-df_pickle = pd.read_pickle("dados.pkl")                              # Leitura
-df_pickle.to_pickle("dados_saida.pkl")                                # Escrita
+df_feather = pd.read_feather("dados.feather")
+df_feather.to_feather("dados_saida.feather")
 
+# -------------------------------
+# Pickle
+# -------------------------------
+df_pickle = pd.read_pickle("dados.pkl")
+df_pickle.to_pickle("dados_saida.pkl")
 
-
+# -------------------------------
+# Exemplo de API (JSON online)
+# -------------------------------
+df_selic = pd.read_json("https://api.bcb.gov.br/dados/serie/bcdata.sgs.11/dados?formato=json")
