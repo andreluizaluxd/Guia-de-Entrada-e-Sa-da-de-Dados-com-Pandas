@@ -56,3 +56,30 @@ df = pd.read_csv("dados.csv")
 
 # Escrita
 df.to_csv("dados_saida.csv", index=False)
+
+---------------------------------------------------------
+
+# Leitura
+df = pd.read_json("dados.json")
+
+# Escrita
+df.to_json("dados_saida.json", orient="records", lines=True)
+
+---------------------------------------------------------
+
+from sqlalchemy import create_engine
+import pandas as pd
+
+# Conexão com SQLite (exemplo)
+engine = create_engine("sqlite:///meu_banco.db")
+
+# Leitura
+df = pd.read_sql("SELECT * FROM tabela_exemplo", con=engine)
+
+# Escrita
+df.to_sql("nova_tabela", con=engine, index=False, if_exists="replace")
+
+---------------------------------------------------------
+
+
+
