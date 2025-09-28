@@ -57,7 +57,8 @@ df = pd.read_csv("dados.csv")
 # Escrita
 df.to_csv("dados_saida.csv", index=False)
 
----------------------------------------------------------
+### json
+```python
 
 # Leitura
 df = pd.read_json("dados.json")
